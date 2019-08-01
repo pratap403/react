@@ -1,0 +1,543 @@
+// Props Pratice Using product data
+----------------------------------->
+
+(App.js)
+
+import React from "react"
+import Product from "./Product"
+import productData from "./productData"
+
+
+
+function App () { 
+     
+    const productComponents = productData.map(item => <Product key = {item.id} product = {item} />)
+    
+    return(
+    
+        <div>
+            {productComponents}
+        </div>
+    
+    )
+}
+
+export default App
+
+// Props Pratice Using items data 
+----------------------------------->
+
+(App.js)
+
+import React from "react"
+import TodoItem from "./TodoItem"
+import todosData from "./todosData"
+
+function App() {
+    const todoItems = todosData.map(item => <TodoItem key={item.id} item={item}/>)
+    
+    return (
+        <div className="todo-list">
+            {todoItems}
+        </div>
+    )
+}
+
+export default App
+
+// Class Work working
+---------------------->
+
+import React, {Component} from "react"
+
+// #1
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header username="vschool"/>
+                <Greeting />
+            </div>
+        )    
+    }
+}
+
+// #2
+class Header extends React.Component {
+    render() {
+        return (
+            <header>
+                <p>Welcome, {this.props.username}!</p>
+            </header>
+        )    
+    }
+}
+
+// #3
+class Greeting extends Component {
+    render() {
+        const date = new Date()
+        const hours = date.getHours()
+        let timeOfDay
+        
+        if (hours < 12) {
+            timeOfDay = "morning"
+        } else if (hours >= 12 && hours < 17) {
+            timeOfDay = "afternoon"
+        } else {
+            timeOfDay = "night"
+        }
+        return (
+            <h1>Good {timeOfDay} to you, sir or madam!</h1>
+        )
+    }
+}
+
+export default App
+
+
+// class work and state work
+----------------------------->
+
+
+import React, {Component} from "react"
+
+
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            name: "Sally",
+            age: 13
+        }
+    }
+    
+    render() {
+        return (
+            <div>
+                <h1>{this.state.name}</h1>
+                <h3>{this.state.age} years old</h3>
+            </div>
+        )    
+    }
+}
+
+export default App
+
+
+// Render page with Condition
+----------------------------->
+
+
+import React from "react"
+
+class App extends React.Component {
+    
+    constructor () {
+        
+        super()
+        
+        this.state = {
+            
+            isLogged: false
+        }
+    }
+    
+    render() {
+        
+        let wordDisplay 
+        
+        if(this.state.isLogged)
+            wordDisplay = "on"
+        else
+            wordDisplay = "off"
+        
+        
+        return (
+                <h1>You are currently Logged {wordDisplay}</h1>
+        )
+    }
+}
+
+export default App
+
+// Class Pratice Using items data 
+----------------------------------->
+
+
+import React from "react"
+import TodoItem from "./Practice Work/TodoItem"
+import todosData from "./Practice Work/todosData"
+
+class App extends React.Component {
+    
+    constructor () {
+        
+        super()
+        
+        this.state = {
+            
+            todos: todosData
+        }
+    }
+    
+    render () {
+        
+        const todoItems = this.state.todos.map(item => <TodoItem key = {item.id} item =  {item}/>)
+        
+        return(
+                <div>
+                    {todoItems}                  
+                </div>
+        )
+    }
+    
+}
+
+export default App
+
+
+// Handel Events
+----------------->
+
+import React from "react"
+
+function handleClick() {
+    console.log("I was clicked")
+}
+
+// https://reactjs.org/docs/events.html#supported-events
+
+function App() {
+    return (
+        <div>
+            <img onMouseOver={() => console.log("Hovered!")} src="https://www.fillmurray.com/200/100"/>
+            <br />
+            <br />
+            <button onClick={handleClick}>Click me</button>
+        </div>
+    )
+}
+
+export default App
+
+
+// Set State
+------------->
+
+import React from "react"
+
+import React from "react"
+import ChildComponent from "./components/ChildComponent"
+class App extends React.Component {
+    
+    constructor() {
+        
+                    super()
+
+                    this.state = {
+                        count: 100
+                                }
+        
+        this.handleClick = this.handleClick.bind(this)
+        
+                    }
+    
+    
+    handleClick () {
+        
+//        this.setState({count: 1})
+        
+//        this.setState(prevState => {
+//            
+//            return ({count: prevState.count + 1})
+//        })
+        
+        this.setState (prevState => { return {count: prevState.count + Math.floor(Math.random() * 101)}})
+    }
+    
+    render() {
+        
+        return (
+                
+            <div>
+            <h1>{this.state.count}</h1>
+            <button onClick = {this.handleClick}> Click Me </button>
+            <ChildComponent count = {this.state.count} />
+            </div>
+        
+        )
+    }
+    
+    
+}
+
+export default App
+
+
+// CheckBox State Changed practice item data
+---------------------------------------------->
+
+import React from "react"
+import TodoItem from "./Practice Work/TodoItem"
+import todosData from "./Practice Work/todosData"
+
+class App extends React.Component {
+    constructor() {
+        super()
+        
+        this.state = {
+            todos: todosData
+        }
+        
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
+    
+    handleChange(id)
+    {
+        this.setState(prevState => {
+            const updatedTodos = prevState.todos.map(todo => {
+                
+                if(todo.id === id){
+                    todo.completed = !todo.completed
+                }
+                
+                return todo;
+            })
+            
+            return {
+                todos :updatedTodos
+            }
+        })
+    }
+    
+    
+    render () {
+        
+        let todoItems = this.state.todos.map(item => <TodoItem key = {item.id} item = {item}
+                                             handleChange = {this.handleChange}/>)
+        
+        return(
+                <div>
+                    {todoItems}                         
+                </div>
+                
+        )
+    }
+} 
+export default App
+
+ // Life cycle of react
+ ------------------------->
+ 
+ 
+import React, {Component} from "react"
+
+// https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1
+// https://reactjs.org/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes
+
+class TodoList extends Component {
+    constructor() {
+        super()
+        this.state = {}
+    }
+    
+    static getDerivedStateFromProps(props, state) {
+        // return the new, updated state based upon the props
+        // https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
+        // https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+    }
+    
+    getSnapshotBeforeUpdate() {
+        // create a backup of the current way things are
+        // https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate
+    }
+    
+    // componentWillMount() {
+        
+    // }
+    
+    componentDidMount() {
+        // GET the data I need to correctly display
+    }
+    
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.whatever !== this.props.whatever) {
+    //         // do something important here
+    //     }
+    // }
+    
+    shouldComponentUpdate(nextProps, nextState) {
+        // return true if want it to update
+        // return false if not
+    }
+    
+    // componentWillUpdate() {
+        
+    // }
+    
+    componentWillUnmount() {
+        // teardown or cleanup your code before your component disappears
+        // (E.g. remove event listeners)
+    }
+    
+    render() {
+        return (
+            <div>
+                Code goes here
+            </div>
+        )
+    }
+}
+
+export default App
+
+// Conditional Rendering
+------------------------->
+
+import React from "react"
+import Conditional from "./Conditional"
+
+class App extends React.Component {
+    constructor() {
+        
+        super()
+        this.state  = {
+            isLoading : true
+        }
+    }
+    
+    componentDidMount() 
+    {
+        setTimeout(() =>{
+            this.setState({
+                isLoading : false
+            })
+        }, 1500)
+    }
+    
+    render() 
+    {
+        return(
+            <Conditional isLoading = {this.state.isLoading}/>
+        )
+    }
+    
+}
+            
+export default App
+
+alter
+=====>
+
+import React from "react"
+import Conditional from "./Conditional"
+
+class App extends React.Component {
+    constructor() {
+        
+        super()
+        this.state  = {
+            isLoading : true
+        }
+    }
+    
+    componentDidMount() 
+    {
+        setTimeout(() =>{
+            this.setState({
+                isLoading : false
+            })
+        }, 1500)
+    }
+    
+    render() 
+    {
+        return(
+            <div>
+                {this.state.isLoading ?  <h1> Loading... </h1> : 
+                <Conditional />}
+            </div>
+        )
+    }
+    
+}
+            
+export default App
+
+
+// Conditional Rendering Pratoce 2
+----------------------------------->
+
+import React from "react"
+
+
+class App extends React.Component
+{
+    constructor () {
+        super()
+        
+        this.state = {
+            unreadMessages: [
+                "Call your mom!",
+                "New spam email available. All links are definitely safe to click."
+            ]
+        }
+    }
+    
+    render (){
+        
+        return(
+                <div>
+                    {this.state.unreadMessages.length > 0  &&
+                    <h2>You have {this.state.unreadMessages.length} unread messages!</h2>}
+                </div>
+        )
+    }
+}
+export default App
+
+
+
+// Conditional Rendering Pratoce 3
+----------------------------------->
+
+import React from "react"
+
+class App extends React.Component
+{
+    constructor() {
+        super()
+        
+        this.state = {
+            isLoggedIn : false
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
+    handleChange ()
+    {
+        this.setState (prevState => {
+            return { isLoggedIn : !prevState.isLoggedIn}
+        })
+    }
+    
+    render() {
+        
+        let buttonText = this.state.isLoggedIn ? "LOG OUT" : "LOG IN"
+        let displayText = this.state.isLoggedIn ? "Logged In" :"Logged Out"
+        return(
+                <div>
+                    <button onClick={this.handleChange}> {buttonText} </button>
+                    <h2>{displayText}</h2>
+                </div>
+        )
+    }
+}
+
+export default App
+
+
+
+

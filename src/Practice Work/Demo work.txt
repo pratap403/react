@@ -1,0 +1,810 @@
+/*
+
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App; 
+
+import React from 'react';
+
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            <Header/>
+            <Content/>
+         </div>
+      );
+   }
+}
+class Header extends React.Component {
+   render() {
+      return (
+         <div>
+            <h1>Header</h1>
+         </div>
+      );
+   }
+}
+class Content extends React.Component {
+   render() {
+      return (
+         <div>
+            <h2>Content</h2>
+            <p>The content text!!!</p>
+         </div>
+      );
+   }
+}
+export default App;*/
+
+
+
+import React from 'react';
+
+class App extends React.Component {
+   constructor() {
+      super();
+      this.state = {
+         data: 
+         [
+            {
+               "id":1,
+               "name":"Foo",
+               "age":"20"
+            },
+            {
+               "id":2,
+               "name":"Bar",
+               "age":"30"
+            },
+            {
+               "id":3,
+               "name":"Baz",
+               "age":"40"
+            }
+         ]
+      }
+   }
+   render() {
+      return (
+         <div>
+            <Header/>
+            <table>
+               <tbody>
+                  {this.state.data.map((person, i) => <TableRow key = {i} 
+                     data = {person} />)}
+               </tbody>
+            </table>
+         </div>
+      );
+   }
+}
+class Header extends React.Component {
+   render() {
+      return (
+         <div>
+            <h1>Header</h1>
+         </div>
+      );
+   }
+}
+class TableRow extends React.Component {
+   render() {
+      return (
+         <tr>
+            <td>{this.props.data.id}</td>
+            <td>{this.props.data.name}</td>
+            <td>{this.props.data.age}</td>
+         </tr>
+      );
+   }
+}
+export default App; 
+
+
+/*
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            <h3>Array: {this.props.propArray}</h3>
+            <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
+            <h3>Func: {this.props.propFunc(3)}</h3>
+            <h3>Number: {this.props.propNumber}</h3>
+            <h3>String: {this.props.propString}</h3>
+            <h3>Object: {this.props.propObject.objectName1}</h3>
+            <h3>Object: {this.props.propObject.objectName2}</h3>
+            <h3>Object: {this.props.propObject.objectName3}</h3>
+         </div>
+      );
+   }
+}
+
+App.propTypes = {
+   propArray: PropTypes.array.isRequired,
+   propBool: PropTypes.bool.isRequired,
+   propFunc: PropTypes.func,
+   propNumber: PropTypes.number,
+   propString: PropTypes.string,
+   propObject: PropTypes.object
+}
+
+App.defaultProps = {
+   propArray: [1,2,3,4,5],
+   propBool: true,
+   propFunc: function(e){return e},
+   propNumber: 1,
+   propString: "String value...",
+   
+   propObject: {
+      objectName1:"objectValue1",
+      objectName2: "objectValue2",
+      objectName3: "objectValue3"
+   }
+}
+export default App;*/
+
+
+/*
+import React from 'react';
+
+class App extends React.Component {
+   constructor() {
+      super();
+		
+      this.state = {
+         data: []
+      }
+	
+      this.setStateHandler = this.setStateHandler.bind(this);
+   };
+   setStateHandler() {
+      var item = "setState..."
+      var myArray = this.state.data.slice();
+	  myArray.push(item);
+      this.setState({data: myArray})
+   };
+   render() {
+      return (
+         <div>
+            <button onClick = {this.setStateHandler}>SET STATE</button>
+            <h4>State Array: {this.state.data}</h4>
+         </div>
+      );
+   }
+}
+export default App;*/
+
+
+/*
+import React from 'react';
+
+class App extends React.Component {
+   constructor() {
+      super();
+      this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+   };
+   forceUpdateHandler() {
+      this.forceUpdate();
+   };
+   render() {
+      return (
+         <div>
+            <button onClick = {this.forceUpdateHandler}>FORCE UPDATE</button>
+            <h4>Random number: {Math.random()}</h4>
+         </div>
+      );
+   }
+}
+export default App;*/
+
+/*
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends React.Component {
+   constructor() {
+      super();
+      this.findDomNodeHandler = this.findDomNodeHandler.bind(this);
+   };
+   findDomNodeHandler() {
+      var myDiv = document.getElementById('myDiv');
+      ReactDOM.findDOMNode(myDiv).style.color = 'green';
+   }
+   render() {
+      return (
+         <div>
+            <button onClick = {this.findDomNodeHandler}>FIND DOME NODE</button>
+            <div id = "myDiv">NODE</div>
+         </div>
+      );
+   }
+}
+export default App;*/
+
+/*
+
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+      
+      this.state = {
+         data: 0
+      }
+      this.setNewNumber = this.setNewNumber.bind(this)
+   };
+   setNewNumber() {
+      this.setState({data: this.state.data + 1})
+   }
+   render() {
+      return (
+         <div>
+            <button onClick = {this.setNewNumber}>INCREMENT</button>
+            <Content myNumber = {this.state.data}></Content>
+         </div>
+      );
+   }
+}
+class Content extends React.Component {
+   componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+   componentWillReceiveProps(newProps) {    
+      console.log('Component WILL RECIEVE PROPS!')
+   }
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+   render() {
+      return (
+         <div>
+            <h3>{this.props.myNumber}</h3>
+         </div>
+      );
+   }
+}
+export default App;*/
+
+/*
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+      
+      this.state = {
+         data: 'Initial data...'
+      }
+      this.updateState = this.updateState.bind(this);
+   };
+   updateState(e) {
+      this.setState({data: e.target.value});
+   }
+   render() {
+      return (
+         <div>
+            <input type = "text" value = {this.state.data} 
+               onChange = {this.updateState} />
+            <h4>{this.state.data}</h4>
+         </div>
+      );
+   }
+}
+export default App;*/
+
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+
+
+
+
+/*
+import React from "react";
+function MyInfo()
+{
+    return(
+        <div>
+            <h1>Akshay Pratap Singh</h1>
+            <p>Hey how you doin </p>
+            <ul>
+                <li>Jammu And Khasmir</li>
+                <li>Munnar</li>
+                <li>Puducherry</li>
+            </ul>
+        </div>
+    );
+}
+
+export default MyInfo;
+
+import React from 'react';
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
+
+function App () {
+    return(
+        <div>
+        
+            <Header />
+            <MainContent />
+            <Footer />
+        
+        </div>
+    
+    );
+}
+
+export default App
+
+
+import React from "react"
+
+function App() {
+    return (
+        <div>
+            <input type="checkbox" />
+            <p>Placeholder text here</p>
+            
+            <input type="checkbox" />
+            <p>Placeholder text here</p>
+            
+            <input type="checkbox" />
+            <p>Placeholder text here</p>
+            
+            <input type="checkbox" />
+            <p>Placeholder text here</p>
+        </div>
+    )
+}
+
+export default App
+
+
+// using javascript for getting the hour in order to say morning, afternoon, night
+
+import React from "react"
+
+function App () {
+    
+    const date = new Date()
+    const hours = date.getHours()
+    let timeOfDay
+    
+    if(hours < 12)
+        timeOfDay = "Good Morning"
+    else if(hours >= 12 && hours < 17)
+        timeOfDay = "Good Afternoon"
+    else
+       timeOfDay = "Good night"
+    
+    return(
+            <h1>{timeOfDay}</h1>
+    )
+}
+
+// using inline style
+
+export default App
+
+import React from "react"
+
+function App () {
+    
+    const date = new Date()
+    const hours = date.getHours()
+    let timeOfDay
+    
+    if(hours < 12)
+        timeOfDay = "Good Morning"
+    else if(hours >= 12 && hours < 17)
+        timeOfDay = "Good Afternoon"
+    else
+       timeOfDay = "Good night"
+    
+    return(
+            <h1 style={{color: "#FF8C00", backgroundColor: "#FF2D00"}}>{timeOfDay}</h1>
+    )
+}
+
+export default App
+
+//another way of using inline style
+import React from "react"
+
+function App () {
+    
+    const date = new Date()
+    const hours = date.getHours()
+    let timeOfDay
+    
+    if(hours < 12)
+        timeOfDay = "Good Morning"
+    else if(hours >= 12 && hours < 17)
+        timeOfDay = "Good Afternoon"
+    else
+       timeOfDay = "Good night"
+    
+    
+    const styles = {
+                        color: "#FF8C00", 
+                        backgroundColor: "#FF2D00",  //instead of writing background-color we write backgroundColor. In react js we use camel case becoz js doesn't allow '-'
+                        fontSize: 24                 // By default px no need of write px for fontSize or write "200px"    
+                    }
+    
+    return(
+            <h1 style={styles}>{timeOfDay}</h1>
+    )
+}
+
+export default App
+
+
+// Without Using Props Style sheet name = style.css
+
+import React from "react"
+
+function App() {
+    return (
+        <div className="contacts">
+            <div className="contact-card">
+                <img src="http://placekitten.com/300/200"/>
+                <h3>Mr. Whiskerson</h3>
+                <p>Phone: (212) 555-1234</p>
+                <p>Email: mr.whiskaz@catnap.meow</p>
+            </div>
+            
+            <div className="contact-card">
+                <img src="http://placekitten.com/400/200"/>
+                <h3>Fluffykins</h3>
+                <p>Phone: (212) 555-2345</p>
+                <p>Email: fluff@me.com</p>
+            </div>
+            
+            <div className="contact-card">
+                <img src="http://placekitten.com/400/300"/>
+                <h3>Destroyer</h3>
+                <p>Phone: (212) 555-3456</p>
+                <p>Email: ofworlds@yahoo.com</p>
+            </div>
+            
+            <div className="contact-card">
+                <img src="http://placekitten.com/200/100"/>
+                <h3>Felix</h3>
+                <p>Phone: (212) 555-4567</p>
+                <p>Email: thecat@hotmail.com</p>
+            </div>
+        </div>
+    )
+}
+
+export default App
+
+
+// with using props  (App.js)
+ 
+import React from "react"
+import ContactCards from "./ContactCards"
+
+function App() {
+    return (
+        <div className="contacts">
+        
+        
+            <ContactCards 
+        
+                name = "Mr. Whiskerson"
+                imgUrl = "http://placekitten.com/300/200"
+                phone = "(212) 555-1234"
+                email = "mr.whiskaz@catnap.meow"
+        
+            />
+            
+            <ContactCards
+                
+                name = "Fluffykins"
+                imgUrl = "http://placekitten.com/400/200"
+                phone = "(212) 555-2345"
+                email = "fluff@me.com"
+            />
+        
+        
+            <ContactCards 
+        
+                name = "Destroyer"
+                imgUrl = "http://placekitten.com/400/300"
+                phone = "(212) 555-3456"
+                email = "ofworlds@yahoo.com"
+            />
+        
+        
+            <ContactCards
+        
+                name = "Felix"
+                imgUrl = "http://placekitten.com/200/100"
+                phone = "(212) 555-4567"
+                email = "thecat@hotmail.com"
+            />
+        
+        </div>
+    )
+}
+
+export default App
+
+// ContactCards File but if we want to add 50 contact cards more the App.js Grow bigger so for tha go for solution 1
+
+
+import React from 'react'
+
+function ContactCards (props) {
+    
+    
+    return(
+            <div className="contact-card">
+                <img src={props.imgUrl}/>
+                <h3>{props.name}</h3>
+                <p>Phone: {props.phone}</p>
+                <p>Email: {props.email}</p>
+            </div>
+    
+    )
+}
+
+export default ContactCards
+
+
+//Solution 1 (App.js)
+
+import React from "react"
+import ContactCards from "./ContactCards"
+
+function App() {
+    return (
+        <div className="contacts">
+        
+        
+            <ContactCards 
+                
+                contacts = {{name:"Mr. Whiskerson",imgUrl:"http://placekitten.com/300/200",phone:"(212) 555-1234",email:"mr.whiskaz@catnap.meow"}}
+                />
+            
+            <ContactCards
+                
+                contacts = {{name:"Fluffykins",imgUrl:"http://placekitten.com/400/200",phone:"(212) 555-2345",email:"fluff@me.com"}}
+            />
+        
+        
+            <ContactCards 
+        
+                contacts = {{name:"Destroyer",imgUrl:"http://placekitten.com/400/300",phone:"(212) 555-3456",email:"ofworlds@yahoo.com"}}
+          
+            />
+        
+        
+            <ContactCards
+        
+                contacts = {{name:"Felix",imgUrl:"http://placekitten.com/200/100",phone:"(212) 555-4567",email:"thecat@hotmail.com"}}
+   
+            />
+        
+        </div>
+    )
+}
+
+export default App
+
+//Solution 1 (ContactCards)
+-------------------------------------->
+
+import React from 'react'
+
+function ContactCards (props) {
+    
+    
+    return(
+            <div className="contact-card">
+                <img src={props.contacts.imgUrl}/>
+                <h3>{props.contacts.name}</h3>
+                <p>Phone: {props.contacts.phone}</p>
+                <p>Email: {props.contacts.email}</p>
+            </div>
+    
+    )
+}
+
+export default ContactCards
+
+
+// When the data is given in program itself but in real data come from http in json for the go to solution 2
+
+(App.js)
+
+import React from "react"
+
+import Joke from "./Joke"
+
+function App() {
+    return (
+        <div>
+            <Joke punchLine="It’s hard to explain puns to kleptomaniacs because they always take things literally." />
+            
+            <Joke 
+                question="What's the best thing about Switzerland?" 
+                punchLine="I don't know, but the flag is a big plus!"
+            />
+            
+            <Joke 
+                question="Did you hear about the mathematician who's afraid of negative numbers?" 
+                punchLine="He'll stop at nothing to avoid them!"
+            />
+            
+            <Joke 
+                question="Hear about the new restaurant called Karma?" 
+                punchLine="There’s no menu: You get what you deserve."
+            />
+            
+            <Joke 
+                question="Did you hear about the actor who fell through the floorboards?" 
+                punchLine="He was just going through a stage."
+            />
+            
+            <Joke 
+                question="Did you hear about the claustrophobic astronaut?" 
+                punchLine="He just needed a little space."
+            />
+            
+        </div>
+    )
+}
+
+export default App
+
+// (Joke.js)
+
+import React from "react"
+
+function Joke(props) {
+    return (
+        <div>
+            <h3 style={{display: !props.question && "none"}}>Question: {props.question}</h3>
+            <h3 style={{color: !props.question && "#888888"}}>Answer: {props.punchLine}</h3>
+            <hr/>
+        </div>
+    )
+}
+
+export default Joke
+
+//Solution 2
+---------------------------->
+//(App.js)
+
+
+import React from "react"
+
+
+import Joke from "./Joke"
+import jokesData from "./jokesData"
+
+function App () {
+    
+    const componentdata = jokesData.map(joke => <Joke key = {joke.id} question = {joke.question} punchLine = {joke.punchLine} />)
+    
+     return(
+    
+        <div>
+        {componentdata}
+        </div>
+    )
+}
+
+export default App
+
+//(Joke.js)
+
+import React from "react"
+
+function Joke (props) {
+    return(
+    
+<div> 
+        
+    {/*<h3 style = {{display: props.question ? "block" : "none"}}> Questions: {props.question}</h3>
+    <h5 style = {{color: props.question ? "black" : "#888888"}}> Answer: {props.punchLine}</h5> 
+    
+    or another way of doing was given below */}
+        
+        <h3 style = {{display: !props.question && "none"}}> Questions: {props.question}</h3>
+        <h5 style = {{color: !props.question && "#888888"}}> Answer: {props.punchLine}</h5>
+
+        <hr/>
+</div>
+
+    )
+}
+export default Joke
+
+
+//(jokesData.js)
+
+const jokesData = [
+    {
+        id: 1,
+        punchLine: "It’s hard to explain puns to kleptomaniacs because they always take things literally."
+    },
+    {
+        id: 2,
+        question: "What's the best thing about Switzerland?",
+        punchLine: "I don't know, but the flag is a big plus!"
+    },
+    {
+        id: 3,
+        question: "Did you hear about the mathematician who's afraid of negative numbers?",
+        punchLine: "He'll stop at nothing to avoid them!"
+    },
+    {
+        id: 4,
+        question: "Hear about the new restaurant called Karma?",
+        punchLine: "There’s no menu: You get what you deserve."
+    },
+    {
+        id: 5,
+        question: "Did you hear about the actor who fell through the floorboards?",
+        punchLine: "He was just going through a stage."
+    },
+    {
+        id: 6,
+        question: "Did you hear about the claustrophobic astronaut?",
+        punchLine: "He just needed a little space."
+    }
+]
+
+export default jokesData
+
+
+
+
+
+
