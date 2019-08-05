@@ -1,0 +1,117 @@
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title>JavaScript Form Validation</title>
+        <link rel='stylesheet' href='js-form-validation.css' type='text/css' />
+        <script src="demo_validation.js" type="text/javascript"></script>
+
+    </head>
+    
+            <body onload="document.demo.userid.focus();">
+                    <h1>Registration Form</h1>
+                    <div>
+                        <form name='demo'>
+                                <div>
+                                    <label for="fullName">Full Name:</label>
+                                        <input 
+                                               id = "fullName"
+                                               type="text" 
+                                               name="userName" 
+                                               placeholder = "Full Name"
+                                               size="25"
+                                               onchange = "nameValidate(value);"
+                                        />
+                                    <label id = "nameValidate"></label>
+                                </div>
+                            
+                                <br/>
+                            
+                                <div>
+                                    <label for="fathName">Father's Name:</label>
+                                        <input 
+                                               id = "fathName"
+                                               type="text" 
+                                               placeholder = "Father's Name"
+                                               name="fatherName" 
+                                               size="25"
+                                               onchange = "nameValidate(value);"
+                                        />
+                                    <label id = "fnameValidate" ></label>
+                                </div>
+                            
+                                <br/>
+                            
+                                <div>
+                                    <label for="dob">Date of Birth:</label>
+                                    <input 
+                                           id="dob"
+                                           type="date" 
+                                           name="bday"
+                                    />     
+                                </div>
+                                
+                            <br>
+                            
+                                <div>
+                                    <label for="contact">Contact No.</label>
+                                    <input 
+                                           id ="contact"
+                                           type="text" 
+                                           name="contactNum"
+                                           onchange="numberValidate(value);"
+                                    />
+                                    <label id = "contactValidate" ></label>
+                                </div>
+                            
+                                <br>
+                            
+                                <div>
+                                    <label for="meterNumber">Meter No.</label>
+                                    <input 
+                                           id="meterNumber"
+                                           type="text" 
+                                           name="meterNum"
+                                           onchange="numberValidate(value);"
+                                    />
+                                    <label id = "meterValidate" ></label>
+                                </div>
+                            <br>
+                            
+                                <div>
+                                    <label for="zipCode">ZIP Code:</label>
+                                    <input 
+                                           id ="zipCode"
+                                           type="text" 
+                                           name="zipCodeNum"
+                                           onchange="numberValidate(value);"
+                                    />
+                                    <label id = "zipValidate" ></label>
+                                </div>
+                            
+                                <br>
+                            
+                                <div>
+                                    Address:<br>
+                                        <textarea id = "myTextarea" placeholder = "Your address.." required></textarea>
+                                    
+                                </div>
+                                
+                              
+                            
+                                
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            </form>
+                
+                 </div>
+                    
+                
+            </body>
+</html>
